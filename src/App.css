@@ -1,0 +1,66 @@
+main {
+  background-color: rgb(34, 34, 34);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+canvas {
+  align-self: stretch;
+  flex-grow: 1;
+  background-color: black;
+}
+
+nav {
+  display: grid;
+  justify-content: center;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 1px;
+}
+
+nav > * {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+nav > div {
+  display: flex;
+  align-items: center;
+}
+
+nav > div > label {
+  color: white;
+  padding: 0 5px;
+}
+
+nav > div > input[type="number"] {
+  background-color: rgb(216, 216, 216);
+  align-self: stretch;
+  border: 0;
+  outline: 0;
+  padding: 5px;
+}
+
+nav > button {
+  border: none;
+  height: 32px;
+  background-color: rgb(216, 216, 216);
+}
+
+nav > button:focus {
+  outline: none;
+}
+
+nav > button:hover {
+  background-color: rgb(179, 179, 179);
+}
+
+nav > button:active {
+  background-color: rgb(129, 129, 129);
+}
