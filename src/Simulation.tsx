@@ -6,11 +6,14 @@ export class Simulation extends React.Component<{skipAmount: number}> {
     private game: Game;
 
     public onNext() {
+        const startTime = Date.now();
         for (let i = 0; i < Math.max(0, this.props.skipAmount); i++) {
-            this.game.generateLastSnapshot();
+            this.game.step();
         }
         
         this.game.redraw();
+        // tslint:disable-next-line:no-console
+        console.log(`Elapsed time: ${(Date.now() - startTime)/1000} seconds.`);
     }
 
     public onRestart() {

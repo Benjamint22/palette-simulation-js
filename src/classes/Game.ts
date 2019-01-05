@@ -27,7 +27,7 @@ export class Game {
     public unzoomRate: number; // How much to multiply the position of the persons by.
 
     private canvas: HTMLCanvasElement;
-    private snapshots: Snapshot[] = [];
+    private snapshot: Snapshot;
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
@@ -35,16 +35,16 @@ export class Game {
         canvas.height = canvas.clientHeight;
         this.unzoomRate = Math.min(canvas.clientWidth, canvas.clientHeight) - 80;
         const snap = new Snapshot();
-        this.snapshots.push(snap);
+        this.snapshot = snap;
         for (let i = 0; i < personsAmount; i++) {
             snap.persons.push(Person.getRandom());
         }
     }
 
-    public generateLastSnapshot(): void {
-        const oldSnap = this.snapshots[this.snapshots.length - 1]
+    public step(): void {
+        const oldSnap = this.snapshot
         const snap = oldSnap.clone();
-        this.snapshots.push(snap);
+        this.snapshot = snap;
         oldSnap.persons.forEach((person, i) => {
             let xDif = 0;
             let yDif = 0;
@@ -60,7 +60,7 @@ export class Game {
         });
     }
 
-    public redraw(snap: Snapshot = this.snapshots[this.snapshots.length - 1]): void {
+    public redraw(snap: Snapshot = this.snapshot): void {
         const ctx = this.canvas.getContext("2d")!;
         ctx.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
         const cornerX = this.canvas.clientWidth / 2 - this.unzoomRate/2;

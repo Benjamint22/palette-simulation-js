@@ -1,7 +1,6 @@
-import { ICloneable } from './ICloneable';
 import { Person } from './Person';
 
-export class Snapshot implements ICloneable {
+export class Snapshot {
     public persons: Person[];
 
     constructor(persons: Person[] = []) {
